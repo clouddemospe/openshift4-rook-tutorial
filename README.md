@@ -1,6 +1,6 @@
 # Installing
 
-This tutorial can be used to deploy Rook+Ceph on OpenShift 4.1. Assumes installation on AWS but these instructions have also been tested with RHV and VMware based OCP deployments.
+This tutorial can be used to deploy Rook+Ceph on OpenShift 4.x.
 
 ```console
 $ git clone https://github.com/rook/rook.git
@@ -13,7 +13,7 @@ $ cd cluster/examples/kubernetes/ceph
 $ oc create -f common.yaml
 ```
 
-Before proceeding we need to create EBS volumes for Ceph to use. These volumes will be presented as raw block devices to the nodes. My reference cluster is deployed on AWS and uses 3x m5.2xlarge worker nodes. I added 1x400 EBS volume to each node. For other platforms, just ensure raw (unformatted/unpartitioned) devices are presented to the nodes you want to deploy Ceph on. If you opt for the default installation, discovery pods will be deployed to automatically enumerate available storage.
+Before proceeding we need to create VMWare volumes for Ceph to use. These volumes will be presented as raw block devices to the nodes. My reference cluster is deployed on VMWare and uses 3x 8 vCPUs and 8 GB RAM worker nodes. I added 1x600 VMWare volume to each node, each volume and virtual machine reside in different datastore. For other platforms, just ensure raw (unformatted/unpartitioned) devices are presented to the nodes you want to deploy Ceph on. If you opt for the default installation, discovery pods will be deployed to automatically enumerate available storage.
 
 Next, create the operator (verify it is running by executing `oc get pods -n rook-ceph | grep operator`). Then create the cluster by sourcing `cluster.yaml`.
 
